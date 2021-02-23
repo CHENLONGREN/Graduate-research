@@ -20,3 +20,9 @@ https://zhuanlan.zhihu.com/p/27621053
 
 空间深度学习——ConvLSTM原理及其TensorFlow实现
 https://blog.csdn.net/m0_37622530/article/details/81079001
+
+GitHub/tensorflow-convlstm-cell
+https://github.com/CHENLONGREN/tensorflow-convlstm-cell
+
+GitHub/Char-RNN-TensorFlow
+https://github.com/CHENLONGREN/Char-RNN-TensorFlow
