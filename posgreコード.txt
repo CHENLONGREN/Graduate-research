@@ -1,0 +1,94 @@
+cd E:\PostgreSQL\bin
+set PGCLIENTENCODING=UTF8
+psql -h jointresearch.c4djdhnq7lau.ap-northeast-1.redshift.amazonaws.com -U sophia -d dev -p 5439
+
+jg5Ac_E4
+
+\d
+
+
+select * from google_cp order by  rp_date limit 3;
+
+select rp_date, cp_id, imps, clicks, cost,cv_t,cv_u from google_cp where cp_id = '652057083' ORDER BY rp_date LIMIT 3009;
+
+SELECT cp_id  FROM google_cp where count(rp_date)=3009 GROUP BY cp_id ORDER BY count DESC LIMIT 10;
+
+选一组cp_id，rp_date尽量多：
+SELECT cp_id, count(rp_date) FROM google_cp GROUP BY cp_id ORDER BY count DESC LIMIT 10;
+   cp_id   | count
+-----------+-------
+ 718362171 |  5481
+ 718357631 |  4953
+ 979145991 |  3728
+ 616007016 |  3347
+ 974871751 |  3267
+ 301729239 |  3244
+ 633211586 |  3200
+ 151406838 |  3161
+ 643122368 |  3114
+ 102946061 |  3092
+(10 行记录)
+
+SELECT cp_id, count(ag_id) FROM google GROUP BY cp_id ORDER BY count DESC LIMIT 10;
+   cp_id    |  count
+------------+---------
+  664913020 | 4722802
+  640879380 | 3005891
+ 1418658686 | 1159276
+ 1418769563 |  935702
+ 1464753544 |  868140
+  619500847 |  675612
+  664913017 |  413743
+  905831484 |  400027
+ 1051722129 |  296427
+ 1065993328 |  267415
+(10 行记录)
+
+SELECT ag_id, count(rp_date) FROM google WHERE cp_id = '664913020' GROUP BY ag_id ORDER BY count DESC LIMIT 10;
+    ag_id    | count
+-------------+-------
+ 33616688837 |  1950
+ 30542705461 |  1936
+ 33616673477 |  1495
+ 36193458360 |  1467
+ 58237801327 |  1467
+ 34106530056 |  1440
+ 49384726071 |  1394
+ 33616673237 |  1334
+ 30542648141 |  1330
+ 34106671416 |  1327
+(10 行记录)
+
+该组cp_id下，筛选留下rp_date尽量多的ag_id：
+select rp_date, cp_id, ag_id, imps, clicks, cost,cv,cv_u from google where cp_id='664913020' AND ag_id= '33616688837' ORDER BY rp_date LIMIT 10;
+
+select rp_date, cp_id, device, imps, clicks, cost,cv_t from google_cp where cp_id='652057083' ORDER BY rp_date LIMIT 50;
+
+select rp_date, cp_id, device, imps, clicks, cost,cv_t from google_cp where cp_id='652057083' AND device=1  ORDER BY rp_date LIMIT 20;
+
+
+
+ 648028230 |  3009
+ 653176682 |  3009
+ 722442618 |  3009
+ 304053913 |  3009
+ 717353203 |  3009
+ 622861879 |  3009
+ 616525581 |  3009
+ 648028221 |  3009
+ 644474395 |  3009
+ 646115724 |  3009
+ 652056933 |  3009
+ 644474389 |  3009
+ 645221020 |  3009
+
+select rp_date, cp_id, device, imps, clicks, cost,cv_t from google_cp where cp_id = ' 622861879' ORDER BY rp_date LIMIT 20;
+select rp_date, cp_id, device, imps, clicks, cost,cv_t from google_cp where cp_id = ' 717353203' ORDER BY rp_date LIMIT 20;
+
+
+
+
+
+
+
+
